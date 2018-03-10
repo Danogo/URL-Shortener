@@ -5,13 +5,14 @@ $(document).ready(function() {
   const apiUrl = 'https://www.googleapis.com/urlshortener/v1/url';
   const apiKey = 'AIzaSyBlpQ2OF5x79WMdyKimcxxtRldmEKGldaQ';
 
-  function shortenUrl() {
+
+  function shortenUrl() { //funkcja skracająca adres url
     const urlWithKey = apiUrl + '?key=' + apiKey;
     const urlToShorten = $inputUrl.val();
-    $.ajax({
+    $.ajax({ //konfiguracja zapytania ajax
       url: urlWithKey,
       type: 'POST',
-      data: JSON.stringify({longUrl: urlToShorten}),
+      data: JSON.stringify({longUrl: urlToShorten}), //przygotowanie danych do wysłania w formacie JSON
       dataType: 'json',
       contentType: 'application/json',
       success(response) {
@@ -23,10 +24,10 @@ $(document).ready(function() {
     });
   }
 
-  function expandUrl() {
+  function expandUrl() { //funkcja rozwijająca skrócony adres url
     const urlWithKey = apiUrl + '?key=' + apiKey + '&shortUrl=';
-    const urlToExpand = urlWithKey + $inputUrl.val();
-    $.ajax({
+    const urlToExpand = urlWithKey + $inputUrl.val(); //wszystkie informacje przekazywane są w adresie URL
+    $.ajax({ //konfiguracja zapytania ajax
       url: urlToExpand,
       type: 'GET',
       dataType: 'json',
@@ -41,7 +42,7 @@ $(document).ready(function() {
 
   btnEl.on('click', function(e) {
     e.preventDefault();
-    $responseField.empty();
+    $responseField.empty(); //wyczyszczenie poprzedniego komunikatu
     if (e.target.className === 'btn btn-shorten') {
       shortenUrl();
     } else {
