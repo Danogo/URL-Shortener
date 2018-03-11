@@ -51,3 +51,5 @@ $(document).ready(function() {
   });
 
 });
+
+//TODO: Dodać copy to clipboard na wyświetlonym url
